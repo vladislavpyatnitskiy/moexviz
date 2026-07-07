@@ -7,3 +7,6 @@ Fig. 1. Box Plot of Russian Stocks
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Line%20Plot.png?raw=true)
 Fig. 2. Line Plot for Polyus Zoloto (PLZL)
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Cumulative%20Plot.png?raw=true)
+Fig. 3. Plot of Cumulative Returns of Russian Stocks
