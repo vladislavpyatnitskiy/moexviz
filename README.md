@@ -10,3 +10,6 @@ Fig. 2. Line Plot for Polyus Zoloto (PLZL)
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Cumulative%20Plot.png?raw=true)
 Fig. 3. Plot of Cumulative Returns of Russian Stocks
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Volatility%20Plot.png?raw=true)
+Fig. 4. Plot of Volatility of Russian Stocks
