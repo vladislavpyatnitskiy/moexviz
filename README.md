@@ -13,3 +13,6 @@ Fig. 3. Plot of Cumulative Returns of Russian Stocks
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Volatility%20Plot.png?raw=true)
 Fig. 4. Plot of Volatility of Russian Stocks
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Drawdown%20Plot.png?raw=true)
+Fig. 5. Drawdown Plot of Russian Stock
