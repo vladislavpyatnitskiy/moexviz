@@ -16,3 +16,9 @@ Fig. 4. Plot of Volatility of Russian Stocks
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Drawdown%20Plot.png?raw=true)
 Fig. 5. Drawdown Plot of Russian Stock
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Correlation%20Heatmap%20(Pearson).png?raw=true)
+Fig. 6. Correlation Heatmap via Pearson method
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Correlation%20Heatmap%20(Spearman).png?raw=true)
+Fig. 7. Correlation Heatmap via Spearman method
