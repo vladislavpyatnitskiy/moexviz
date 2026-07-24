@@ -22,3 +22,6 @@ Fig. 6. Correlation Heatmap via Pearson method
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Correlation%20Heatmap%20(Spearman).png?raw=true)
 Fig. 7. Correlation Heatmap via Spearman method
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/QQ%20plot.png?raw=true)
+Fig. 8. QQ Plot 
