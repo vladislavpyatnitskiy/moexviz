@@ -28,3 +28,6 @@ Fig. 8. QQ Plot
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Histogram.png?raw=true)
 Fig. 9. Histogram
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Scatter%20Plot.png?raw=true)
+Fig. 10. Scatter Plot of SBER's Beta
