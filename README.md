@@ -31,3 +31,6 @@ Fig. 9. Histogram
 
 ![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Scatter%20Plot.png?raw=true)
 Fig. 10. Scatter Plot of SBER's Beta
+
+![](https://github.com/vladislavpyatnitskiy/moexviz/blob/main/Plots/Barplot.png?raw=true)
+Fig. 11. Bar Plot of Stock Performance
