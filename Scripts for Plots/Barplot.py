@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import requests
 import seaborn as sns
+from datetime import date
 
 def moex_bar_plt(x, s=None, e=None, col="blue"): # Bar plot
     
@@ -17,6 +18,13 @@ def moex_bar_plt(x, s=None, e=None, col="blue"): # Bar plot
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
+    
+    
+    if s is None:
+      s = "2007-01-01"  
+      
+    if e is None:
+      e = date.today().isoformat()
       
     params = {
         "from": s,
@@ -48,6 +56,8 @@ def moex_bar_plt(x, s=None, e=None, col="blue"): # Bar plot
     
     df = df[["close", "Date"]].set_index("Date").rename(
       columns={"close": ticker})
+    
+    print(f"{ticker} is downloaded")  
       
     dfs.append(df)
   
@@ -62,11 +72,11 @@ def moex_bar_plt(x, s=None, e=None, col="blue"): # Bar plot
   x = x.sort_values(by = 'Return')
     
   x.plot(kind='bar')
-  plt.title('Performance of Companies (%)')
+  plt.title(f'Performance of Companies (%)')
   plt.grid(True, linestyle=":", color="grey")
   plt.axhline(y=0, color="black")
   plt.show()
     
 moex_bar_plt(
-  x=["SBER", "GAZP", "PHOR", "PLZL", "GMKN"], s="2023-10-01"
+  x=["SBER", "GAZP", "PHOR", "PLZL", "GMKN"]
   ) # Test
