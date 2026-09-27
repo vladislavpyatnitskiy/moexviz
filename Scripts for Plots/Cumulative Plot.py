@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import requests
+from datetime import date
 
-def moex_cum_rets(x, s, e, title=None):
+def moex_cum_rets(x, s=None, e=None, title=None):
   
   if isinstance(x, str):
     x = [x]
@@ -16,6 +17,12 @@ def moex_cum_rets(x, s, e, title=None):
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
+    
+    if s is None:
+      s = "2007-01-01"  
+      
+    if e is None:
+      e = date.today().isoformat()
       
     params = {
         "from": s,
@@ -65,6 +72,6 @@ def moex_cum_rets(x, s, e, title=None):
   plt.show()
   
 moex_cum_rets(
-  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"], "2017-01-01", "2024-12-31",
+  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"],
   title = "Performance of Russian Stocks"
 )
