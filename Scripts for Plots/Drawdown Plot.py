@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import requests
+from datetime import date
 
-def moex_drawdown_plt(x, s, e):
+def moex_drawdown_plt(x, s=None, e=None):
   
   if isinstance(x, str):
     x = [x]
@@ -16,7 +17,13 @@ def moex_drawdown_plt(x, s, e):
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
+    
+    if s is None:
+      s = "2007-01-01"  
       
+    if e is None:
+      e = date.today().isoformat()
+        
     params = {
         "from": s,
         "till": e,
@@ -67,5 +74,5 @@ def moex_drawdown_plt(x, s, e):
         plt.show()
   
 moex_drawdown_plt(
-  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"], "2017-01-01", "2024-12-31"
+  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"]
   )
