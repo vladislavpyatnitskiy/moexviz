@@ -3,6 +3,7 @@ import requests
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from datetime import date
 
 def moex_heat_map(x, s=None, e=None, method="pearson"):
   
@@ -17,6 +18,13 @@ def moex_heat_map(x, s=None, e=None, method="pearson"):
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
+    
+    
+    if s is None:
+      s = "2007-01-01"  
+      
+    if e is None:
+      e = date.today().isoformat()
       
     params = {
         "from": s,
@@ -67,6 +75,6 @@ def moex_heat_map(x, s=None, e=None, method="pearson"):
   plt.show() # Show
   
 moex_heat_map(
-  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"], "2017-01-01", "2024-12-31",
+  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"],# "2017-01-01", "2024-12-31",
   method="spearman"
 )
