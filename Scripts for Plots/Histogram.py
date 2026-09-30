@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import requests
 import seaborn as sns
+from datetime import date
+from scipy.stats import norm
 
 def moex_hist_plt(x, s=None, e=None, bins=50, log=True):
   
@@ -17,6 +19,12 @@ def moex_hist_plt(x, s=None, e=None, bins=50, log=True):
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
+    
+    if s is None:
+      s = "2007-01-01"  
+      
+    if e is None:
+      e = date.today().isoformat()
       
     params = {
         "from": s,
@@ -56,14 +64,34 @@ def moex_hist_plt(x, s=None, e=None, bins=50, log=True):
   x = np.log(p / p.shift(1)).dropna() * 100
   
   for column in x.columns:
-        plt.figure()  # Create a new figure for each plot
-        plt.hist(x[column], bins=bins, edgecolor='black', alpha = 0.7)
-        plt.title(column)
-        plt.xlabel('Returns')
-        plt.ylabel('Frequency')
-        plt.grid(True, linestyle=":", color="grey")
-        plt.show()
+      returns = x[column]
+      mu, std = norm.fit(returns)
+  
+      plt.figure()
+      plt.hist(
+        returns, 
+        bins=bins, 
+        density=True, 
+        edgecolor="black", 
+        alpha=0.7
+        )
+  
+      grid = np.linspace(returns.min(), returns.max(), 200)
+      plt.plot(
+        grid, 
+        norm.pdf(grid, mu, std), 
+        "r", 
+        linewidth=2,
+        label=f"Normal fit: μ={mu:.2f}, σ={std:.2f}"
+        )
+  
+      plt.title(column)
+      plt.xlabel("Returns, %")
+      plt.ylabel("Density")
+      plt.legend()
+      plt.grid(True, linestyle=":", color="grey")
+      plt.show()
 
 moex_hist_plt(
-  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"], "2010-01-01", "2024-12-31"
+  ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"]
   ) # Display
