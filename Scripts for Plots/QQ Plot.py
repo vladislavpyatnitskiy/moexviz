@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import probplot
 import pandas as pd
 import requests
+from datetime import date
 
 def moex_qq_plot(x, s=None, e=None, log=False):
   
@@ -17,7 +18,10 @@ def moex_qq_plot(x, s=None, e=None, log=False):
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
-      
+    
+    s = s or "2007-01-01"
+    e = e or date.today().isoformat()
+    
     params = {
         "from": s,
         "till": e,
@@ -52,22 +56,21 @@ def moex_qq_plot(x, s=None, e=None, log=False):
     dfs.append(df)
   
   p = pd.concat(dfs, axis=1)
-  
 
   # Compute returns 
   if log:
-    p = np.log(p / p.shift(1)).dropna()
+      p = np.log(p / p.shift(1)).dropna()
   else:
-    p = (p / p.shift(1) - 1).dropna() * 100
+      p = (p / p.shift(1) - 1).dropna() * 100
 
   for column in p.columns:
-    fig, ax = plt.subplots()
-    probplot(p[column], plot=ax)
-    ax.get_lines()[1].set(color='red', linewidth=2)
-    ax.grid(True, linestyle='--', alpha=0.7)
-    ax.set_title(f"{column} Q-Q Plot")
-    plt.tight_layout()
-    plt.show()
+      fig, ax = plt.subplots()
+      probplot(p[column], plot=ax)
+      ax.get_lines()[1].set(color='red', linewidth=2)
+      ax.grid(True, linestyle='--', alpha=0.7)
+      ax.set_title(f"{column} Q-Q Plot")
+      plt.tight_layout()
+      plt.show()
 
 moex_qq_plot(
   ["SBER", "GAZP", "PHOR", "PLZL", "GMKN"], "2017-01-01", "2024-12-31",
