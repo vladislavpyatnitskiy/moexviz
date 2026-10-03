@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import requests
 import seaborn as sns
+from datetime import date
 
 def moex_beta_plt(x, i="IMOEX", s=None, e=None):
     # Handle single-ticker string input BEFORE mutating
@@ -21,7 +22,10 @@ def moex_beta_plt(x, i="IMOEX", s=None, e=None):
             f"https://iss.moex.com/iss/engines/stock/"
             f"markets/{market}/securities/{ticker}/candles.json"
         )
- 
+        
+        s = s or "2007-01-01"
+        e = e or date.today().isoformat()
+        
         params = {
             "from": s,
             "till": e,
@@ -69,6 +73,7 @@ def moex_beta_plt(x, i="IMOEX", s=None, e=None):
     index = p[i]       # Series with index returns
  
     for column in stocks.columns:
+        fig, ax = plt.subplots()
         plt.figure()
         plt.scatter(x=index, y=stocks[column])
         sns.regplot(
@@ -77,13 +82,14 @@ def moex_beta_plt(x, i="IMOEX", s=None, e=None):
           line_kws={"color": "red"}, 
           scatter=False
           )
+        plt.grid(True, linestyle='--', alpha=0.7)  
         plt.title(f"{column} Beta Plot")
         plt.xlabel(f"{i} Return (%)")
         plt.ylabel(f"{column} Return (%)")
         plt.show()
  
 moex_beta_plt(
-    x=["SBER", "GAZP", "PHOR", "PLZL", "GMKN"],
+    x=["SBER", "GAZP", "PHOR", "PLZL", "GMKN"]
     s="2010-01-01",
     e="2024-12-31",
 )
