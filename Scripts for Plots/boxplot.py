@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import requests
+from datetime import date
 
-def moex_boxplot(x, s, e, main=None):
+def moex_boxplot(x, s=None, e=None, main=None):
   
   if isinstance(x, str):
     x = [x]
@@ -16,7 +17,10 @@ def moex_boxplot(x, s, e, main=None):
       f"https://iss.moex.com/iss/engines/stock/"
       f"markets/shares/securities/{ticker}/candles.json"
       )
-      
+    
+    s = s or "2007-01-01"
+    e = e or date.today().isoformat()
+    
     params = {
         "from": s,
         "till": e,
